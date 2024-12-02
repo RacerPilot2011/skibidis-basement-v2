@@ -22,23 +22,97 @@
             const bareUrl = (location.protocol === "https:" ? "https" : "http") + "://" + location.host + "/bare/"
             const urlParams = new URLSearchParams(window.location.search);
             const gameFrame = document.getElementById('gameframe');
-            var url = ""
+            var gameURL = ""
 
             document.getElementById('change').innerHTML = urlParams.get('game').replace('-',' ').charAt(0).toUpperCase() + urlParams.get('game').replace('-',' ').slice(1);
             game = urlParams.get('game');
             if (game == "poly-track") {
-                
+            	gameURL = "";
             } else if (game == "bulletz.io") {
-                url = "https://bulletz.io";
-            } else if (game == "") {
-                
+            	gameURL = "";
+            } else if (game == "ovo") {
+            	gameURL = "";
+            } else if (game == "dadish") {
+            	gameURL = "";
+            } else if (game == "dadish-2") {
+            	gameURL = "";
+            } else if (game == "dadish-3") {
+            	gameURL = "";
+            } else if (game == "dadish-3D") {
+            	gameURL = "";
+            } else if (game == "super-liquid-soccer") {
+            	gameURL = "";
+            } else if (game == "watermelon-game") {
+            	gameURL = "";
+            } else if (game == "jump-only") {
+            	gameURL = "";
+            } else if (game == "drive-mad") {
+            	gameURL = "";
+            } else if (game == "bank-robbery") {
+            	gameURL = "";
+            } else if (game == "bank-robbery-2") {
+            	gameURL = "";
+            } else if (game == "bank-robbery-3") {
+            	gameURL = "";
+            } else if (game == "vex-1") {
+            	gameURL = "";
+            } else if (game == "vex-2") {
+            	gameURL = "";
+            } else if (game == "vex-3") {
+            	gameURL = "";
+            } else if (game == "vex-4") {
+            	gameURL = "";
+            } else if (game == "vex-5") {
+            	gameURL = "";
+            } else if (game == "vex-6") {
+            	gameURL = "";
+            } else if (game == "vex-7") {
+            	gameURL = "";
+            } else if (game == "vex-8") {
+            	gameURL = "";
+            } else if (game == "ks-2-teams") {
+            	gameURL = "";
+            } else if (game == "hobo-1") {
+            	gameURL = "";
+            } else if (game == "hobo-2") {
+            	gameURL = "";
+            } else if (game == "hobo-3") {
+            	gameURL = "";
+            } else if (game == "hobo-4") {
+            	gameURL = "";
+            } else if (game == "hobo-5") {
+            	gameURL = "";
+            } else if (game == "hobo-6") {
+            	gameURL = "";
+            } else if (game == "hobo-7") {
+            	gameURL = "";
+            } else if (game == "choppy-orc") {
+            	gameURL = "";
+            } else if (game == "recoil") {
+            	gameURL = "";
+            } else if (game == "tag") {
+            	gameURL = "";
+            } else if (game == "tag-2") {
+            	gameURL = "";
+            } else if (game == "yohoho.io") {
+            	gameURL = "";
+            } else if (game == "double-panda") {
+            	gameURL = "";
+            } else if (game == "race-survival") {
+            	gameURL = "";
+            } else if (game == "poly-track") {
+            	gameURL = "";
+            } else if (game == "poly-track") {
+            	gameURL = "";
+            } else if (game == "minecraft") {
+            	gameURL = "";
             }
             async function launchProxy() {
                 if (!await connection.getTransport()) {
                     await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
                 }
 
-                document.getElementById('gameframe').src = __uv$config.prefix + __uv$config.encodeUrl(url);
+                document.getElementById('gameframe').src = __uv$config.prefix + __uv$config.encodeUrl(gameURL);
             }
             launchProxy();
             function fullscreen(){
