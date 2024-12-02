@@ -1,0 +1,51 @@
+body{
+    margin:0px;
+    padding:0px;
+    font-family:tahoma;
+    background-image: url('https://codehs.com/uploads/4b663b2c4d93d61668cf2ca6d52074d0');
+    background-size: cover;
+}
+.header {
+    position: fixed;
+    border-radius: 10px;
+    width: 100%;
+    background-color: rgba(203,71,152,0.8);
+}
+#search {
+    margin-top: 100px;
+    height: 30px;
+    width: 50%;
+    margin-left:25%;
+    text-align: center;
+    background-color: rgb(220,80,160);
+    border: solid 5px;
+    border-color: rgb(203,71,152);
+    border-radius: 10px;
+}
+#search::placeholder {
+    color: white;
+    opacity: 1;
+}
+#search::ms-input-placeholer {
+    color: white;
+}
+.games {
+    margin-top: 50px;
+}
+.game-button {
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.73));
+    aspect-ratio: 1;
+    width: 115px;
+    border: 10px 10px black;
+    border-radius: 10px;
+    padding-top: 65px;
+    display: inline-block;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    transition: all 0.5s;
+    color: white;
+    background-size: cover;
+}
+.game-button:hover {
+    transform: scale(1.1);
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+    <style>
+        iframe {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+    <head>
+        <script src="/uv/uv.bundle.js"></script>
+        <script src="/uv/uv.config.js"></script>
+        <script src="/baremux/index.js"></script>
+
+    </head>
+    <body>
+        <h1 id="change"> NO GAME HERE</h1>    
+        <iframe id="gameframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=true" allow="autoplay"></iframe>z
+        <button class="under-frame" onclick="fullscreen()">Fullscreen</button>
+        <script>
+            const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
+            const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+            const bareUrl = (location.protocol === "https:" ? "https" : "http") + "://" + location.host + "/bare/"
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameFrame = document.getElementById('gameframe');
+            var url = ""
+
+            document.getElementById('change').innerHTML = urlParams.get('game').replace('-',' ').charAt(0).toUpperCase() + urlParams.get('game').replace('-',' ').slice(1);
+            game = urlParams.get('game');
+            if (game == "poly-track") {
+                
+            } else if (game == "bulletz.io") {
+                url = "https://bulletz.io";
+            } else if (game == "") {
+                
+            }
+            async function launchProxy() {
+                if (!await connection.getTransport()) {
+                    await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+                }
+
+                document.getElementById('gameframe').src = __uv$config.prefix + __uv$config.encodeUrl(url);
+            }
+            launchProxy();
+            function fullscreen(){
+                // Supports most browsers and their versions.
+                var requestMethod = gameFrame.requestFullScreen || gameFrame.webkitRequestFullScreen || gameFrame.mozRequestFullScreen || gameFrame.msRequestFullScreen;
+            
+                if (requestMethod) { // Native full screen.
+                    requestMethod.call(gameFrame);
+                } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+                    var wscript = new ActiveXObject("WScript.Shell");
+                    if (wscript !== null) {
+                        wscript.SendKeys("{F11}");
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

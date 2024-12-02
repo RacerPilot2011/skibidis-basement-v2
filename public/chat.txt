@@ -1,0 +1,9 @@
+sid: hi chat
+advik: hi
+sid: whatca doing? My math teacher forgot about me andd this other person
+and did not tell us to go to the front office lol
+Advik: alr i am adding the pictures to the buttons
+sid: instead of screenshotting, right click save as
+Advik: ik i am just using old ones
+sid: k
+sid: make sure to do the thing in play.html
