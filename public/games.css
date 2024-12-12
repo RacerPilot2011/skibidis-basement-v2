@@ -4,9 +4,14 @@ body{
     font-family:tahoma;
     background-image: url('https://codehs.com/uploads/4b663b2c4d93d61668cf2ca6d52074d0');
     background-size: cover;
+    align-items:center;
+    text-align:center;
+    justify-content:center;
 }
 .header {
-    position: fixed;
+    align-items: center;
+    justify: center
+    position: sticky;
     border-radius: 10px;
     width: 100%;
     background-color: rgba(203,71,152,0.8);
@@ -21,6 +26,7 @@ body{
     border: solid 5px;
     border-color: rgb(203,71,152);
     border-radius: 10px;
+    align-items:center;
 }
 #search::placeholder {
     color: white;
@@ -48,4 +54,48 @@ body{
 }
 .game-button:hover {
     transform: scale(1.1);
+    outline:25px;
+}
+#gamesmenu {
+    background-image: url('./image/games.png');
+}
+.right {
+    margin-left: auto;
+}
+.headerbutton {
+    aspect-ratio: 1;
+    width: 32px;
+    height: auto;
+    border-radius: 5px;
+    border: none;
+    margin-right: 10px;
+    display: flex;
+    
+}
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
 }

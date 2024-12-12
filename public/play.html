@@ -29,7 +29,7 @@
             if (game == "poly-track") {
             	gameURL = "";
             } else if (game == "bulletz.io") {
-            	gameURL = "";
+            	gameURL = "https://bulletz.io";
             } else if (game == "ovo") {
             	gameURL = "";
             } else if (game == "dadish") {
@@ -100,9 +100,9 @@
             	gameURL = "";
             } else if (game == "race-survival") {
             	gameURL = "";
-            } else if (game == "poly-track") {
+            } else if (game == "bitlife") {
             	gameURL = "";
-            } else if (game == "poly-track") {
+            } else if (game == "slowroads") {
             	gameURL = "";
             } else if (game == "minecraft") {
             	gameURL = "";
@@ -111,7 +111,7 @@
                 if (!await connection.getTransport()) {
                     await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
                 }
-
+                console.log(gameURL)
                 document.getElementById('gameframe').src = __uv$config.prefix + __uv$config.encodeUrl(gameURL);
             }
             launchProxy();
