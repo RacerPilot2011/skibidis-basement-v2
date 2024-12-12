@@ -26,52 +26,53 @@
 
             document.getElementById('change').innerHTML = urlParams.get('game').replace('-',' ').charAt(0).toUpperCase() + urlParams.get('game').replace('-',' ').slice(1);
             game = urlParams.get('game');
+            function findGame(){
             if (game == "poly-track") {
-            	gameURL = "";
+            	gameURL = "https://app-polytrack.kodub.com/0.4.2/?";
             } else if (game == "bulletz.io") {
             	gameURL = "https://bulletz.io";
             } else if (game == "ovo") {
-            	gameURL = "";
+            	gameURL = "https://www.crazygames.com/game/ovo";
             } else if (game == "dadish") {
-            	gameURL = "";
+            	gameURL = "https://poki.com/en/g/dadish";
             } else if (game == "dadish-2") {
-            	gameURL = "";
+            	gameURL = "https://poki.com/en/g/dadish-2";
             } else if (game == "dadish-3") {
-            	gameURL = "";
+            	gameURL = "https://poki.com/en/g/dadish-3";
             } else if (game == "dadish-3D") {
-            	gameURL = "";
+            	gameURL = "https://poki.com/en/g/dadish-3d";
             } else if (game == "super-liquid-soccer") {
-            	gameURL = "";
+            	gameURL = "https://poki.com/en/g/super-liquid-soccer";
             } else if (game == "watermelon-game") {
-            	gameURL = "";
+            	gameURL = "https://suikagame.com/";
             } else if (game == "jump-only") {
-            	gameURL = "";
+            	gameURL = "https://poki.com/en/g/jump-only";
             } else if (game == "drive-mad") {
-            	gameURL = "";
+            	gameURL = "https://drive-mad.org/";
             } else if (game == "bank-robbery") {
-            	gameURL = "";
+            	gameURL = "https://www.crazygames.com/embed/bank-robbery";
             } else if (game == "bank-robbery-2") {
-            	gameURL = "";
+            	gameURL = "https://www.crazygames.com/embed/bank-robbery-2";
             } else if (game == "bank-robbery-3") {
-            	gameURL = "";
+            	gameURL = "https://www.crazygames.com/embed/bank-robbery-3";
             } else if (game == "vex-1") {
-            	gameURL = "";
+            	gameURL = "https://play.gamepix.com/vex-1/embed?sid=e4515";
             } else if (game == "vex-2") {
-            	gameURL = "";
+            	gameURL = "https://www.gameflare.com/embed/vex-2/";
             } else if (game == "vex-3") {
-            	gameURL = "";
+            	gameURL = "https://www.crazygames.com/embed/vex-3";
             } else if (game == "vex-4") {
-            	gameURL = "";
+            	gameURL = "https://htmlxm.github.io/h9/vex-4/";
             } else if (game == "vex-5") {
-            	gameURL = "";
+            	gameURL = "https://vex5.vercel.app";
             } else if (game == "vex-6") {
-            	gameURL = "";
+            	gameURL = "https://html5.gamedistribution.com/f120262ab72743039fbce88c1f370df8/";
             } else if (game == "vex-7") {
-            	gameURL = "";
+            	gameURL = "https://www.crazygames.com/embed/vex-7";
             } else if (game == "vex-8") {
-            	gameURL = "";
+            	gameURL = "https://www.crazygames.com/embed/vex-8";
             } else if (game == "ks-2-teams") {
-            	gameURL = "";
+            	gameURL = "https://yandex.com/games/app/264700?utm_source=distrib&is-united-page=1&skip-guard=1&header=no&utm_medium=kbhgames.com&clid=2818308&flags={%22adv_sticky_banner_disabled%22:true}";
             } else if (game == "hobo-1") {
             	gameURL = "";
             } else if (game == "hobo-2") {
@@ -107,6 +108,8 @@
             } else if (game == "minecraft") {
             	gameURL = "";
             }
+            launchProxy();
+        }
             async function launchProxy() {
                 if (!await connection.getTransport()) {
                     await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
@@ -114,7 +117,7 @@
                 console.log(gameURL)
                 document.getElementById('gameframe').src = __uv$config.prefix + __uv$config.encodeUrl(gameURL);
             }
-            launchProxy();
+            findGame();
             function fullscreen(){
                 // Supports most browsers and their versions.
                 var requestMethod = gameFrame.requestFullScreen || gameFrame.webkitRequestFullScreen || gameFrame.mozRequestFullScreen || gameFrame.msRequestFullScreen;
