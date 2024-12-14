@@ -10,7 +10,13 @@
         <script src="/uv/uv.bundle.js"></script>
         <script src="/uv/uv.config.js"></script>
         <script src="/baremux/index.js"></script>
-
+        <script>
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("/uv/sw.js");
+                });
+            }
+            </script>
     </head>
     <body>
         <h1 id="change"> NO GAME HERE</h1>    
@@ -30,7 +36,7 @@
             if (game == "poly-track") {
             	gameURL = "https://app-polytrack.kodub.com/0.4.2/?";
             } else if (game == "bulletz.io") {
-            	gameURL = "https://bulletz.io";
+            	gameURL = "bulletz.io";
             } else if (game == "ovo") {
             	gameURL = "https://www.crazygames.com/game/ovo";
             } else if (game == "dadish") {
@@ -115,7 +121,7 @@
 		await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
 	}
                 console.log(gameURL)
-                document.getElementById('gameframe').src = __uv$config.prefix + __uv$config.encodeUrl(gameURL);
+                document.getElementById('gameframe').src = __uv$config.prefix + __uv$config.encodeUrl(gameURL);;
             }
             findGame();
             function fullscreen(){
