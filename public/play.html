@@ -111,6 +111,9 @@
             launchProxy();
         }
             async function launchProxy() {
+                if (!await connection.getTransport()) {
+		await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+	}
                 console.log(gameURL)
                 document.getElementById('gameframe').src = __uv$config.prefix + __uv$config.encodeUrl(gameURL);
             }
