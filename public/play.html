@@ -34,90 +34,93 @@
 
             document.getElementById('change').innerHTML = urlParams.get('game').replace('-',' ').charAt(0).toUpperCase() + urlParams.get('game').replace('-',' ').slice(1);
             game = urlParams.get('game');
-            function findGame(){
-            if (game == "poly-track") {
-            	gameURL = "https://app-polytrack.kodub.com/0.4.2/?";
-            } else if (game == "bulletz.io") {
-            	gameURL = "https://bulletz.io";
-            } else if (game == "ovo") {
-            	gameURL = "https://www.crazygames.com/embed/ovo";
-            } else if (game == "dadish") {
-            	gameURL = "https://games3.startgamer.ru/dadish/";
-            } else if (game == "dadish-2") {
-            	gameURL = "https://games3.startgamer.ru/dadish_2/";
-            } else if (game == "dadish-3") {
-            	gameURL = "https://games3.startgamer.ru/dadish_3/";
-            } else if (game == "dadish-3D") {
-            	gameURL = "https://poki.com/en/g/dadish-3d";
-            } else if (game == "super-liquid-soccer") {
-            	gameURL = "https://poki.com/en/g/super-liquid-soccer";
-            } else if (game == "watermelon-game") {
-            	gameURL = "https://suikagame.com/";
-            } else if (game == "jump-only") {
-            	gameURL = "https://games3.startgamer.ru/12/jump_only/";
-            } else if (game == "drive-mad") {
-            	gameURL = "https://drive-mad.org/";
-            } else if (game == "bank-robbery") {
-            	gameURL = "https://www.crazygames.com/embed/bank-robbery";
-            } else if (game == "bank-robbery-2") {
-            	gameURL = "https://www.crazygames.com/embed/bank-robbery-2";
-            } else if (game == "bank-robbery-3") {
-            	gameURL = "https://www.crazygames.com/embed/bank-robbery-3";
-            } else if (game == "vex-1") {
-            	gameURL = "https://play.gamepix.com/vex-1/embed?sid=e4515";
-            } else if (game == "vex-2") {
-            	gameURL = "https://www.gameflare.com/embed/vex-2/";
-            } else if (game == "vex-3") {
-            	gameURL = "https://www.coolmathgames.com/sites/default/files/public_games/48552/?gd_sdk_referrer_url=https%3A%2F%2Fwww.coolmathgames.com%2F0-vex-3";
-            } else if (game == "vex-4") {
-            	gameURL = "https://htmlxm.github.io/h9/vex-4/";
-            } else if (game == "vex-5") {
-            	gameURL = "https://vex5.vercel.app";
-            } else if (game == "vex-6") {
-            	gameURL = "https://html5.gamedistribution.com/f120262ab72743039fbce88c1f370df8/";
-            } else if (game == "vex-7") {
-            	gameURL = "https://www.coolmathgames.com/sites/default/files/public_games/43835/?gd_sdk_referrer_url=https%3A%2F%2Fwww.coolmathgames.com%2F0-vex-7";
-            } else if (game == "vex-8") {
-            	gameURL = "https://html5.gamedistribution.com/rvvASMiM/949009d40a2846f89f887de2285d6c28/index.html?gd_zone_config=eyJwYXJlbnRVUkwiOiJodHRwczovL3ZleDguaW8vIiwicGFyZW50RG9tYWluIjoidmV4OC5pbyIsInRvcERvbWFpbiI6InZleDguaW8iLCJoYXNJbXByZXNzaW9uIjp0cnVlLCJsb2FkZXJFbmFibGVkIjp0cnVlLCJob3N0IjoiaHRtbDUuZ2FtZWRpc3RyaWJ1dGlvbi5jb20iLCJ2ZXJzaW9uIjoiMS41LjE3In0%253D";
-            } else if (game == "ks-2-teams") {
-            	gameURL = "https://yandex.com/games/app/264700?utm_source=distrib&is-united-page=1&skip-guard=1&header=no&utm_medium=kbhgames.com&clid=2818308&flags={%22adv_sticky_banner_disabled%22:true}";
-            } else if (game == "hobo-1") {
-            	gameURL = "https://www.crazygames.com/embed/hobo";
-            } else if (game == "hobo-2") {
-            	gameURL = "https://www.crazygames.com/embed/hobo-2";
-            } else if (game == "hobo-3") {
-            	gameURL = "https://www.crazygames.com/embed/hobo-3";
-            } else if (game == "hobo-4") {
-            	gameURL = "https://www.crazygames.com/embed/hobo-4";
-            } else if (game == "hobo-5") {
-            	gameURL = "https://www.crazygames.com/embed/hobo-5";
-            } else if (game == "hobo-6") {
-            	gameURL = "https://www.crazygames.com/embed/hobo-6";
-            } else if (game == "hobo-7") {
-            	gameURL = "https://www.crazygames.com/embed/hobo-7";
-            } else if (game == "choppy-orc") {
-            	gameURL = "http://mat.uc.pt/~mat1617/orc/coffee.html";
-            } else if (game == "recoil") {
-            	gameURL = "https://23azostore.github.io/s6/recoil";
-            } else if (game == "tag") {
-            	gameURL = "https://www.crazygames.com/embed/tag-2-3-4-players";
-            } else if (game == "tag-2") {
-            	gameURL = "https://gamecomets.com/games/tag-2/";
-            } else if (game == "yohoho.io") {
-            	gameURL = "https://yohoho.io/";
-            } else if (game == "double-panda") {
-            	gameURL = "https://kdata1.com/2024/04/doublepanda/";
-            } else if (game == "race-survival") {
-            	gameURL = "https://www.gameflare.com/embed/race-survival-arena-king/";
-            } else if (game == "cookie-clicker"){
-                gameURL = "https://orteil.dashnet.org/cookieclicker/"
-            } else if (game == "bitlife") {
-            	gameURL = "https://bitlifesimulator.io/game/bitlife/";
-            } else if (game == "slowroads") {
-            	gameURL = "https://slowroads.io";
+            if (game == "minecraft") {
+                document.getElementById('gameframe').src = './assets/minecraft.html'
             }
-            launchProxy();
-        }
+            function findGame(){
+                if (game == "poly-track") {
+                    gameURL = "https://app-polytrack.kodub.com/0.4.2/?";
+                } else if (game == "bulletz.io") {
+                    gameURL = "https://bulletz.io";
+                } else if (game == "ovo") {
+                    gameURL = "https://www.crazygames.com/embed/ovo";
+                } else if (game == "dadish") {
+                    gameURL = "https://games3.startgamer.ru/dadish/";
+                } else if (game == "dadish-2") {
+                    gameURL = "https://games3.startgamer.ru/dadish_2/";
+                } else if (game == "dadish-3") {
+                    gameURL = "https://games3.startgamer.ru/dadish_3/";
+                } else if (game == "dadish-3D") {
+                    gameURL = "https://poki.com/en/g/dadish-3d";
+                } else if (game == "super-liquid-soccer") {
+                    gameURL = "https://poki.com/en/g/super-liquid-soccer";
+                } else if (game == "watermelon-game") {
+                    gameURL = "https://suikagame.com/";
+                } else if (game == "jump-only") {
+                    gameURL = "https://games3.startgamer.ru/12/jump_only/";
+                } else if (game == "drive-mad") {
+                    gameURL = "https://drive-mad.org/";
+                } else if (game == "bank-robbery") {
+                    gameURL = "https://www.crazygames.com/embed/bank-robbery";
+                } else if (game == "bank-robbery-2") {
+                    gameURL = "https://www.crazygames.com/embed/bank-robbery-2";
+                } else if (game == "bank-robbery-3") {
+                    gameURL = "https://www.crazygames.com/embed/bank-robbery-3";
+                } else if (game == "vex-1") {
+                    gameURL = "https://play.gamepix.com/vex-1/embed?sid=e4515";
+                } else if (game == "vex-2") {
+                    gameURL = "https://www.gameflare.com/embed/vex-2/";
+                } else if (game == "vex-3") {
+                    gameURL = "https://www.coolmathgames.com/sites/default/files/public_games/48552/?gd_sdk_referrer_url=https%3A%2F%2Fwww.coolmathgames.com%2F0-vex-3";
+                } else if (game == "vex-4") {
+                    gameURL = "https://htmlxm.github.io/h9/vex-4/";
+                } else if (game == "vex-5") {
+                    gameURL = "https://vex5.vercel.app";
+                } else if (game == "vex-6") {
+                    gameURL = "https://html5.gamedistribution.com/f120262ab72743039fbce88c1f370df8/";
+                } else if (game == "vex-7") {
+                    gameURL = "https://www.coolmathgames.com/sites/default/files/public_games/43835/?gd_sdk_referrer_url=https%3A%2F%2Fwww.coolmathgames.com%2F0-vex-7";
+                } else if (game == "vex-8") {
+                    gameURL = "https://html5.gamedistribution.com/rvvASMiM/949009d40a2846f89f887de2285d6c28/index.html?gd_zone_config=eyJwYXJlbnRVUkwiOiJodHRwczovL3ZleDguaW8vIiwicGFyZW50RG9tYWluIjoidmV4OC5pbyIsInRvcERvbWFpbiI6InZleDguaW8iLCJoYXNJbXByZXNzaW9uIjp0cnVlLCJsb2FkZXJFbmFibGVkIjp0cnVlLCJob3N0IjoiaHRtbDUuZ2FtZWRpc3RyaWJ1dGlvbi5jb20iLCJ2ZXJzaW9uIjoiMS41LjE3In0%253D";
+                } else if (game == "ks-2-teams") {
+                    gameURL = "https://yandex.com/games/app/264700?utm_source=distrib&is-united-page=1&skip-guard=1&header=no&utm_medium=kbhgames.com&clid=2818308&flags={%22adv_sticky_banner_disabled%22:true}";
+                } else if (game == "hobo-1") {
+                    gameURL = "https://www.crazygames.com/embed/hobo";
+                } else if (game == "hobo-2") {
+                    gameURL = "https://www.crazygames.com/embed/hobo-2";
+                } else if (game == "hobo-3") {
+                    gameURL = "https://www.crazygames.com/embed/hobo-3";
+                } else if (game == "hobo-4") {
+                    gameURL = "https://www.crazygames.com/embed/hobo-4";
+                } else if (game == "hobo-5") {
+                    gameURL = "https://www.crazygames.com/embed/hobo-5";
+                } else if (game == "hobo-6") {
+                    gameURL = "https://www.crazygames.com/embed/hobo-6";
+                } else if (game == "hobo-7") {
+                    gameURL = "https://www.crazygames.com/embed/hobo-7";
+                } else if (game == "choppy-orc") {
+                    gameURL = "http://mat.uc.pt/~mat1617/orc/coffee.html";
+                } else if (game == "recoil") {
+                    gameURL = "https://23azostore.github.io/s6/recoil";
+                } else if (game == "tag") {
+                    gameURL = "https://www.crazygames.com/embed/tag-2-3-4-players";
+                } else if (game == "tag-2") {
+                    gameURL = "https://gamecomets.com/games/tag-2/";
+                } else if (game == "yohoho.io") {
+                    gameURL = "https://yohoho.io/";
+                } else if (game == "double-panda") {
+                    gameURL = "https://kdata1.com/2024/04/doublepanda/";
+                } else if (game == "race-survival") {
+                    gameURL = "https://www.gameflare.com/embed/race-survival-arena-king/";
+                } else if (game == "cookie-clicker"){
+                    gameURL = "https://orteil.dashnet.org/cookieclicker/"
+                } else if (game == "bitlife") {
+                    gameURL = "https://bitlifesimulator.io/game/bitlife/";
+                } else if (game == "slowroads") {
+                    gameURL = "https://slowroads.io";
+                }
+                launchProxy();
+            }
             async function launchProxy() {
                 if (!await connection.getTransport()) {
 		await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);

@@ -39,7 +39,8 @@ const gameBackgrounds = {
   'race-survival': './image/racesurvival.png',
   'cookie-clicker': './image/cookieclicker.png',
   'bitlife': './image/bitlife.png',
-  'slowroads': './image/slowroads.png'
+  'slowroads': './image/slowroads.png',
+  'minecraft': './image/minecraft.png'
 };
 
 // Set background images for each game button
