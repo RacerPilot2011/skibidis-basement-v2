@@ -76,28 +76,7 @@
         const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
         const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
         const bareUrl = (location.protocol === "https:" ? "https" : "http") + "://" + location.host + "/bare/"
-        const loadFrame = (url) => {
-            const iframe = document.getElementById('content-frame');
-            let searchUrl = "https://www.google.com/search?q=";
-            if (!url.includes(".")) {
-                url = searchUrl + encodeURIComponent(url);
-            } else {
-                if (!url.startsWith("http://") && !url.startsWith("https://")) { // if no http or https is detected, add https automatically
-                    url = "https://" + url;
-                }
-            }
-            iframe.src = __uv$config.prefix + __uv$config.encodeUrl(url);
-            
-            // Update history
-            if (currentIndex < urlHistory.length - 1) {
-                urlHistory.splice(currentIndex + 1, urlHistory.length - currentIndex - 1); // Clear the forward history
-            }
-            if (urlHistory[currentIndex] !== url) {
-                urlHistory.push(url);
-                currentIndex++;
-            }
-            updateButtonStates();
-        }
+        
 
         const updateButtonStates = () => {
             document.getElementById('back-button').disabled = currentIndex <= 0;
@@ -122,11 +101,39 @@
                 loadFrame(urlHistory[currentIndex]);
             }
         });
+        document.getElementById("url-input").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("searchButton").click();
+        }
+    });
+        document.getElementById("load-button").onclick = async function (event) {
+            event.preventDefault();
 
-        document.getElementById('load-button').addEventListener('click', () => {
-            const urlInput = document.getElementById('url-input').value;
-            loadFrame(urlInput);
-        });
+            let url = document.getElementById("url-input").value; // if no periods are detected in the input, search google instead
+            let searchUrl = "https://www.google.com/search?q=";
+
+            if (!url.includes(".")) {
+                url = searchUrl + encodeURIComponent(url);
+            } else {
+                if (!url.startsWith("http://") && !url.startsWith("https://")) { // if no http or https is detected, add https automatically
+                    url = "https://" + url;
+                }
+            }
+            if (!await connection.getTransport()) {
+                await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+            }
+            iframeWindow.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+            // Update history
+            if (currentIndex < urlHistory.length - 1) {
+                urlHistory.splice(currentIndex + 1, urlHistory.length - currentIndex - 1); // Clear the forward history
+            }
+            if (urlHistory[currentIndex] !== url) {
+                urlHistory.push(url);
+                currentIndex++;
+            }
+            updateButtonStates();
+        };
 
     </script>
 </body>
