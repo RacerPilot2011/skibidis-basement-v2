@@ -1,87 +1,125 @@
-<!doctype html>
-<html>
-    <head>
-        <style>
-            /* Add a black background color to the top navigation */
-            .topnav {
-            background-color: #333;
-            overflow: hidden;
-            }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./image/logo.png">
+    <title>The New Skibidi's Basement</title>
+    <script src="/uv/uv.bundle.js"></script>
+    <script src="/uv/uv.config.js"></script>
+    <script src="/baremux/index.js"></script>
 
-            /* Style the links inside the navigation bar */
-            .topnav a {
-            float: left;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            }
-
-            /* Change the color of links on hover */
-            .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-            }
-
-            /* Add a color to the active/current link */
-            .topnav a.active {
-            background-color: #04AA6D;
-            color: white;
-            }
-        </style>
-        <script src="/uv/uv.bundle.js"></script>
-        <script src="/uv/uv.config.js"></script>
-        <script src="/baremux/index.js"></script>
-        <script>
+    <script>
         if ("serviceWorker" in navigator) {
-            window.addEventListener("load", () => {
-                navigator.serviceWorker.register("/uv/sw.js");
-            });
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/uv/sw.js");
+        });
         }
-        </script>
-    </head>
-    <body>
-        <div class="topnav">
-            <a href="index.html"><img src="./image/logo.png" height="30px" style="display: inline-block;"></a>
-            <a href="games.html">Games</a>
-            <a href="proxy.html">Proxy</a>
-            <a href="about.html">About</a>
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        #browser {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        #address-bar {
+            display: flex;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        #url-input {
+            flex: 1;
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+        .nav-button {
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            margin-left: 5px;
+        }
+        .nav-button:hover {
+            background-color: #0056b3;
+        }
+        iframe {
+            flex: 1;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="browser">
+        <div id="address-bar">
+            <button class="nav-button" id="back-button" disabled>Back</button>
+            <button class="nav-button" id="forward-button" disabled>Forward</button>
+            <input type="text" id="url-input" placeholder="Enter URL" value="">
+            <button class="nav-button" id="load-button">Load</button>
         </div>
-        <input type="text" id="urlInput" placeholder="Enter URL here">
-        <button id="searchButton">Search Text</button>
-        <iframe id="iframeWindow" class="iframeWindow"></iframe>
-        <script>
-            const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
-            const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
-            const bareUrl = (location.protocol === "https:" ? "https" : "http") + "://" + location.host + "/bare/"
-            document // makes it so you can press enter to submit as opposed to just being able to press a button
-                .getElementById("urlInput")
-                .addEventListener("keydown", function (event) {
-                    if (event.key === "Enter") {
-                        event.preventDefault();
-                        document.getElementById("searchButton").click();
-                    }
-                });
+        <iframe id="content-frame" src="" allowfullscreen></iframe>
+    </div>
 
-            document.getElementById("searchButton").onclick = async function (event) {
-                event.preventDefault();
+    <script>
+        const urlHistory = [];
+        let currentIndex = -1;
+        const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
+        const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+        const bareUrl = (location.protocol === "https:" ? "https" : "http") + "://" + location.host + "/bare/"
+        const loadFrame = (url) => {
+            const iframe = document.getElementById('content-frame');
+            iframe.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+            
+            // Update history
+            if (currentIndex < urlHistory.length - 1) {
+                urlHistory.splice(currentIndex + 1, urlHistory.length - currentIndex - 1); // Clear the forward history
+            }
+            if (urlHistory[currentIndex] !== url) {
+                urlHistory.push(url);
+                currentIndex++;
+            }
+            updateButtonStates();
+        }
 
-                let url = document.getElementById("urlInput").value; // if no periods are detected in the input, search google instead
-                let searchUrl = "https://www.google.com/search?q=";
+        const updateButtonStates = () => {
+            document.getElementById('back-button').disabled = currentIndex <= 0;
+            document.getElementById('forward-button').disabled = currentIndex >= urlHistory.length - 1;
+        }
 
-                if (!url.includes(".")) {
-                    url = searchUrl + encodeURIComponent(url);
-                } else {
-                    if (!url.startsWith("http://") && !url.startsWith("https://")) { // if no http or https is detected, add https automatically
-                        url = "https://" + url;
-                    }
-                }
-                if (!await connection.getTransport()) {
-                    await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
-                }
-                iframeWindow.src = __uv$config.prefix + __uv$config.encodeUrl(url);
-            };
-        </script>
-    </body>
+        document.getElementById('load-button').addEventListener('click', () => {
+            const urlInput = document.getElementById('url-input').value;
+            loadFrame(urlInput);
+        });
+
+        document.getElementById('back-button').addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                loadFrame(urlHistory[currentIndex]);
+            }
+        });
+
+        document.getElementById('forward-button').addEventListener('click', () => {
+            if (currentIndex < urlHistory.length - 1) {
+                currentIndex++;
+                loadFrame(urlHistory[currentIndex]);
+            }
+        });
+
+        document.getElementById('load-button').addEventListener('click', () => {
+            const urlInput = document.getElementById('url-input').value;
+            loadFrame(urlInput);
+        });
+
+    </script>
+</body>
 </html>
