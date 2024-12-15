@@ -76,37 +76,14 @@
         const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
         const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
         const bareUrl = (location.protocol === "https:" ? "https" : "http") + "://" + location.host + "/bare/"
-        
+        let iframeWindow = document.getElementById('content-frame')
 
-        const updateButtonStates = () => {
-            document.getElementById('back-button').disabled = currentIndex <= 0;
-            document.getElementById('forward-button').disabled = currentIndex >= urlHistory.length - 1;
-        }
-
-        document.getElementById('load-button').addEventListener('click', () => {
-            const urlInput = document.getElementById('url-input').value;
-            loadFrame(urlInput);
-        });
-
-        document.getElementById('back-button').addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                loadFrame(urlHistory[currentIndex]);
-            }
-        });
-
-        document.getElementById('forward-button').addEventListener('click', () => {
-            if (currentIndex < urlHistory.length - 1) {
-                currentIndex++;
-                loadFrame(urlHistory[currentIndex]);
-            }
-        });
         document.getElementById("url-input").addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            document.getElementById("searchButton").click();
-        }
-    });
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("load-button").click();
+            }
+        });
         document.getElementById("load-button").onclick = async function (event) {
             event.preventDefault();
 
@@ -134,6 +111,30 @@
             }
             updateButtonStates();
         };
+        const updateButtonStates = () => {
+            document.getElementById('back-button').disabled = currentIndex <= 0;
+            document.getElementById('forward-button').disabled = currentIndex >= urlHistory.length - 1;
+        }
+
+        document.getElementById('load-button').addEventListener('click', () => {
+            const urlInput = document.getElementById('url-input').value;
+            loadFrame(urlInput);
+        });
+
+        document.getElementById('back-button').addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                loadFrame(urlHistory[currentIndex]);
+            }
+        });
+
+        document.getElementById('forward-button').addEventListener('click', () => {
+            if (currentIndex < urlHistory.length - 1) {
+                currentIndex++;
+                loadFrame(urlHistory[currentIndex]);
+            }
+        });
+        
 
     </script>
 </body>
