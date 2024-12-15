@@ -31,12 +31,10 @@
             const urlParams = new URLSearchParams(window.location.search);
             const gameFrame = document.getElementById('gameframe');
             var gameURL = ""
+            var needsUltraviolet = true
 
             document.getElementById('change').innerHTML = urlParams.get('game').replace('-',' ').charAt(0).toUpperCase() + urlParams.get('game').replace('-',' ').slice(1);
             game = urlParams.get('game');
-            if (game == "minecraft") {
-                document.getElementById('gameframe').src = './assets/minecraft.html'
-            }
             function findGame(){
                 if (game == "poly-track") {
                     gameURL = "https://app-polytrack.kodub.com/0.4.2/?";
@@ -118,15 +116,20 @@
                     gameURL = "https://bitlifesimulator.io/game/bitlife/";
                 } else if (game == "slowroads") {
                     gameURL = "https://slowroads.io";
+                } else if (game == "minecraft") {
+                    document.getElementById('gameframe').src = './assets/minecraft.html';
+                    needsUltraviolet = false;
                 }
                 launchProxy();
             }
             async function launchProxy() {
-                if (!await connection.getTransport()) {
-		await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
-	}
-                console.log(gameURL)
-                document.getElementById('gameframe').src = __uv$config.prefix + __uv$config.encodeUrl(gameURL);;
+                if (needsUltraviolet == true) {
+                    if (!await connection.getTransport()) {
+                        await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+                    }
+                    console.log(gameURL);
+                    document.getElementById('gameframe').src = __uv$config.prefix + __uv$config.encodeUrl(gameURL);
+                }
             }
             findGame();
             function fullscreen(){
