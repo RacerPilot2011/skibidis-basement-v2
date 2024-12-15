@@ -111,6 +111,10 @@
             }
             updateButtonStates();
         };
+        function loadFrame(urkd) {
+            document.getElementById('url-input').value = urkd;
+            document.getElementById("load-button").click();
+        }
         const updateButtonStates = () => {
             document.getElementById('back-button').disabled = currentIndex <= 0;
             document.getElementById('forward-button').disabled = currentIndex >= urlHistory.length - 1;
