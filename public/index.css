@@ -2,7 +2,7 @@ body{
     margin:0px;
     padding:0px;
     font-family:tahoma;
-    Background-image: url('https://codehs.com/uploads/66c4540f214ba4d9e52a0ec8a4cda739');
+    background-image: url('https://codehs.com/uploads/66c4540f214ba4d9e52a0ec8a4cda739');
      background-size: cover;
      color:white;
      text-align:center;
@@ -53,9 +53,6 @@ transition: all 0.5s;
 }
 .skibidi{
     font-size:400%;
-    
-    
-    
 }
 .skibidi:hover{
    transition:all; 

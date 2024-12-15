@@ -8,14 +8,6 @@ body{
     text-align:center;
     justify-content:center;
 }
-.header {
-    align-items: center;
-    justify: center
-    position: sticky;
-    border-radius: 10px;
-    width: 100%;
-    background-color: rgba(203,71,152,0.8);
-}
 #search {
     margin-top: 100px;
     height: 30px;
@@ -61,16 +53,6 @@ body{
 }
 .right {
     margin-left: auto;
-}
-.headerbutton {
-    aspect-ratio: 1;
-    width: 32px;
-    height: auto;
-    border-radius: 5px;
-    border: none;
-    margin-right: 10px;
-    display: flex;
-    
 }
 /* Add a black background color to the top navigation */
 .topnav {
